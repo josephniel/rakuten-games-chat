@@ -1,0 +1,11 @@
+version: '2'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: ./dockerfile
+    container_name: rakuten-games-chat-server
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - "./server:/app"
