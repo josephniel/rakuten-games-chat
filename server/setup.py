@@ -6,6 +6,7 @@ requires = [
     'eventlet==0.24.1',
     'Flask==1.0.2',
     'Flask-SocketIO==3.0.1',
+    'Flask-PyMongo==2.2.0',
 ]
 tests_require = []
 
