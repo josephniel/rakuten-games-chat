@@ -20,5 +20,6 @@ def create_app() -> Flask:
         )
 
     socketio.init_app(app)
+    import_submodules('app.events')
 
     return app
