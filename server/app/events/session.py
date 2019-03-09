@@ -1,8 +1,6 @@
-from flask import request
-from flask_socketio import emit
+from typing import List
 
-from app.bootstrap import socketio
-from app.logger import logger
+from flask import request
 
 
 SESSIONS = {}
@@ -20,33 +18,9 @@ def remove_user_session() -> None:
     SESSIONS.pop(request.sid)
 
 
-def emit_update_active_users() -> None:
-    emit(
-        'update_active_users',
-        {'active_users': list(SESSIONS.values())},
-        broadcast=True
-    )
+def get_username_by_session_id(session_id: str) -> None:
+    return SESSIONS[session_id]
 
 
-@socketio.on('connect')
-def client_connected() -> None:
-    add_user_session()
-    emit('username_requested')
-    logger.info("Client connected.")
-
-
-@socketio.on('add_username')
-def on_add_username(data) -> None:
-    if data['username'] in SESSIONS.values():
-        emit('username_taken')
-    else:
-        add_username(data['username'])
-        emit_update_active_users()
-        emit('username_valid')
-
-
-@socketio.on('disconnect')
-def client_disconnected() -> None:
-    remove_user_session()
-    emit_update_active_users()
-    logger.info("Client disconnected.")
+def get_active_users() -> List[str]:
+    return list(SESSIONS.values())
