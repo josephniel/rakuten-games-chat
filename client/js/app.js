@@ -22,16 +22,18 @@ socket.on('username_taken', reaskUsername);
 socket.on('username_valid', (data) => {
   sid = data['sid'];
 });
+
+
 socket.on('update_active_users', (data) => {
   document.getElementById('users').innerText = data.active_users;
 });
 
 
 socket.on('load_chat_messages', data => {
-  document.getElementById('users').innerHTML = document.getElementById('users').innerHTML + "<br />" + JSON.stringify(data);
+  document.getElementById('messages').innerHTML = document.getElementById('messages').innerHTML + "<br />" + JSON.stringify(data);
 });
 socket.on('add_chat_message', (data) => {
-  document.getElementById('users').innerHTML = document.getElementById('users').innerHTML + "<br />" + JSON.stringify(data);
+  document.getElementById('messages').innerHTML = document.getElementById('messages').innerHTML + "<br />" + JSON.stringify(data);
 });
 
 
