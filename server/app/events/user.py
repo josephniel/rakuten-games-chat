@@ -41,9 +41,5 @@ def on_add_username(data) -> None:
     else:
         add_username(data['username'])
         emit_update_active_users()
-        emit_load_messages(
-            page=0,
-        )
-        emit('username_valid', {
-            'sid': request.sid,
-        })
+        emit_load_messages(0)
+        emit('username_valid', {'sid': request.sid})
