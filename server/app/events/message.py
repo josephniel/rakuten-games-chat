@@ -6,9 +6,9 @@ from flask_socketio import emit
 import json
 
 from app.bootstrap import socketio
-from app.events.session import get_username_by_session_id
 from app.logger import logger
 from app.model import Message
+from app.session import get_username_by_session_id
 
 
 def emit_load_messages(page: int) -> None:

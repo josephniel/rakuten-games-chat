@@ -3,13 +3,13 @@ from flask_socketio import emit
 
 from app.bootstrap import socketio
 from app.events.message import emit_load_messages
-from app.events.session import (
+from app.logger import logger
+from app.session import (
     add_user_session,
     add_username,
     get_active_users,
     remove_user_session,
 )
-from app.logger import logger
 
 
 def emit_update_active_users() -> None:
