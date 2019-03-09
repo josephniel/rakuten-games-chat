@@ -16,6 +16,7 @@ const reaskUsername = () => {
 
 let sid = null;
 let currentPage = 0;
+let messages = [];
 
 
 socket.on('username_requested', askUsername);
@@ -31,10 +32,16 @@ socket.on('update_active_users', (data) => {
 
 
 socket.on('load_chat_messages', data => {
-  document.getElementById('messages').innerHTML = document.getElementById('messages').innerHTML + "<br />" + JSON.stringify(data);
+  data = JSON.parse(data);
+  messages = [
+    ...data.messages,
+    ...messages,
+  ];
+  document.getElementById('messages').innerHTML = JSON.stringify(messages);
 });
 socket.on('add_chat_message', (data) => {
-  document.getElementById('messages').innerHTML = document.getElementById('messages').innerHTML + "<br />" + JSON.stringify(data);
+  messages.push(data);
+  document.getElementById('messages').innerHTML = JSON.stringify(messages);
 });
 
 

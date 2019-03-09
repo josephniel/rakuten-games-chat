@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from bson import json_util
 from flask_socketio import emit
 
@@ -22,14 +20,11 @@ def emit_load_messages(page: int) -> None:
     )
 
 
-def emit_new_message(username: str, content: str, timestamp: datetime) -> None:
+def emit_new_message(message_id: str) -> None:
+    message = Message.get(message_id)
     emit(
         'add_chat_message',
-        json.dumps({
-            'username': username,
-            'message': content,
-            'timestamp': timestamp,
-        }, default=json_util.default),
+        json.dumps(message, default=json_util.default),
         broadcast=True,
     )
 
@@ -42,12 +37,8 @@ def on_load_chat_messages(data) -> None:
 @socketio.on('send_message')
 def on_send_message(data) -> None:
     logger.info('Message received from %s', data['sid'])
-    message = Message.create(
+    message_id = Message.create(
         username=get_username_by_session_id(data['sid']),
         content=data['message'],
     )
-    emit_new_message(
-        username=message['name'],
-        content=message['content'],
-        timestamp=message['timestamp'],
-    )
+    emit_new_message(message_id)

@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Iterator, Optional
 
+from bson import ObjectId
+
 from app.bootstrap import mongo
 from app.config import DEFAULT_MESSAGES_LIMIT
 
@@ -9,8 +11,8 @@ class Message:
     collection = mongo.db.message
 
     @staticmethod
-    def get(username: str) -> Optional[dict]:
-        return Message.collection.find({'name': username})
+    def get(message_id: str) -> Optional[dict]:
+        return Message.collection.find_one({'_id': ObjectId(message_id)})
 
     @staticmethod
     def find(
@@ -19,7 +21,7 @@ class Message:
     ) -> Iterator[dict]:
         offset = page * limit
         cursor = Message.collection.find().sort([
-            ('timestamp', 1)
+            ('timestamp', -1)
         ]).skip(offset).limit(limit)
         for row in cursor:
             yield row
@@ -31,5 +33,5 @@ class Message:
             'content': content,
             'timestamp': datetime.now()
         }
-        Message.collection.insert_one(message)
-        return message
+        result = Message.collection.insert_one(message)
+        return result.inserted_id
