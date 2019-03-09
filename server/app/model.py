@@ -3,6 +3,8 @@ from typing import Iterator, Optional
 
 from bson import ObjectId
 
+import pymongo
+
 from app.bootstrap import mongo
 from app.config import DEFAULT_MESSAGES_LIMIT
 
@@ -20,9 +22,9 @@ class Message:
             limit: int = DEFAULT_MESSAGES_LIMIT,
     ) -> Iterator[dict]:
         offset = page * limit
-        cursor = Message.collection.find().sort([
-            ('timestamp', -1)
-        ]).skip(offset).limit(limit)
+        cursor = Message.collection.find().skip(offset).limit(limit).sort([
+            ('timestamp', pymongo.DESCENDING)
+        ])
         for row in cursor:
             yield row
 

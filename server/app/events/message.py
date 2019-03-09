@@ -14,7 +14,10 @@ def emit_load_messages(page: int) -> None:
     emit(
         'load_chat_messages',
         json.dumps({
-            'messages': messages,
+            'messages': sorted(
+                messages,
+                key=(lambda message: message['timestamp'])
+            ),
         }, default=json_util.default),
         broadcast=True,
     )

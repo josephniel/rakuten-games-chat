@@ -15,7 +15,7 @@ const reaskUsername = () => {
 
 
 let sid = null;
-let currentPage = 0;
+let currentPage = 1;
 let messages = [];
 
 

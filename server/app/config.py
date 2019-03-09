@@ -14,4 +14,4 @@ MONGODB_URI = 'mongodb://{user}:{password}@{host}:{port}/{database}'.format(
     database=os.getenv('MONGODB_DATABASE'),
 )
 
-DEFAULT_MESSAGES_LIMIT = 1
+DEFAULT_MESSAGES_LIMIT = 10
