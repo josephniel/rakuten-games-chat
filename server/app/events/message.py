@@ -11,11 +11,8 @@ from app.logger import logger
 from app.model import Message
 
 
-def emit_load_messages(limit: int, offset: int) -> None:
-    messages = list(Message.find(
-        limit=limit,
-        offset=offset,
-    ))
+def emit_load_messages(page: int) -> None:
+    messages = list(Message.find(page))
     emit(
         'load_chat_messages',
         json.dumps({
@@ -35,6 +32,11 @@ def emit_new_message(username: str, content: str, timestamp: datetime) -> None:
         }, default=json_util.default),
         broadcast=True,
     )
+
+
+@socketio.on('retrieve_messages')
+def on_load_chat_messages(data) -> None:
+    emit_load_messages(data['page'])
 
 
 @socketio.on('send_message')

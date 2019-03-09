@@ -15,6 +15,7 @@ const reaskUsername = () => {
 
 
 let sid = null;
+let currentPage = 0;
 
 
 socket.on('username_requested', askUsername);
@@ -43,5 +44,13 @@ document.getElementById('chatInput').addEventListener('submit', (e) => {
   socket.emit('send_message', {
     'sid': sid,
     'message': message,
+  });
+});
+
+document.getElementById('loadMore').addEventListener('click', () => {
+  socket.emit('retrieve_messages', {
+    'page': currentPage,
+  }, () => {
+    currentPage++;
   });
 });

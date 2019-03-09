@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Iterator, Optional
 
 from app.bootstrap import mongo
+from app.config import DEFAULT_MESSAGES_LIMIT
 
 
 class Message:
@@ -12,7 +13,11 @@ class Message:
         return Message.collection.find({'name': username})
 
     @staticmethod
-    def find(limit: int, offset: int) -> Iterator[dict]:
+    def find(
+            page: int,
+            limit: int = DEFAULT_MESSAGES_LIMIT,
+    ) -> Iterator[dict]:
+        offset = page * limit
         cursor = Message.collection.find().sort([
             ('timestamp', 1)
         ]).skip(offset).limit(limit)

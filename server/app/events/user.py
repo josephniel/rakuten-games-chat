@@ -2,7 +2,6 @@ from flask import request
 from flask_socketio import emit
 
 from app.bootstrap import socketio
-from app.config import DEFAULT_MESSAGES_LIMIT
 from app.events.message import emit_load_messages
 from app.events.session import (
     add_user_session,
@@ -43,8 +42,7 @@ def on_add_username(data) -> None:
         add_username(data['username'])
         emit_update_active_users()
         emit_load_messages(
-            limit=DEFAULT_MESSAGES_LIMIT,
-            offset=0,
+            page=0,
         )
         emit('username_valid', {
             'sid': request.sid,
