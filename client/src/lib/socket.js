@@ -35,4 +35,10 @@ export function emit_send_message(sid, message) {
   });
 }
 
+export function emit_retrieve_messages(currentPage) {
+  socket.emit('retrieve_messages', {
+    page: currentPage,
+  });
+}
+
 export default socket

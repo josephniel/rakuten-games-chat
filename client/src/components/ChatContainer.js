@@ -1,14 +1,42 @@
 import React, { Component } from 'react';
 import Chatbox from './Chatbox';
 import ChatForm from './ChatForm';
+import LoadMoreButton  from './LoadMoreButton';
 import './ChatContainer.css';
 
+
 class ChatContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasMoreMessages: true,
+    };
+
+    this.updateHasMoreMessages = this.updateHasMoreMessages.bind(this);
+  }
+
+  updateHasMoreMessages(hasMoreMessages) {
+    this.setState({
+      ...this.state,
+      hasMoreMessages,
+    });
+  }
+
   render() {
     const { sid, username } = this.props;
+    const { hasMoreMessages } = this.state;
+
     return (
       <div className="chat-container">
-        <Chatbox username={username} />
+        {
+          hasMoreMessages === true ?
+            <LoadMoreButton /> :
+            null
+        }
+        <Chatbox
+          username={username}
+          updateHasMoreMessages={this.updateHasMoreMessages}
+        />
         <ChatForm sid={sid} />
       </div>
     );

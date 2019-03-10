@@ -38,15 +38,20 @@ class Chatbox extends Component {
   }
 
   updateMessages(data) {
-    data = JSON.parse(data);
+    const { updateHasMoreMessages } = this.props;
     const { messages } = this.state;
 
-    this.setState({
-      messages:  [
-        ...data.messages,
-        ...messages,
-      ]
-    });
+    data = JSON.parse(data);
+    if (data.messages.length === 0) {
+      updateHasMoreMessages(false);
+    } else {
+      this.setState({
+        messages:  [
+          ...data.messages,
+          ...messages,
+        ]
+      });
+    }
   }
 
   render() {
