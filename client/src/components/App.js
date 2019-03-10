@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ActiveUsersContainer from './ActiveUsersContainer';
-import Chatbox from './Chatbox';
-import ChatForm from './ChatForm';
+import ChatContainer from './ChatContainer';
 import Header from './Header';
 import LoginContainer from './LoginContainer';
 import './App.css';
@@ -49,18 +48,20 @@ class App extends Component {
     const { isUserPanelOpened, sid, username, userCount } = this.state;
     return (
       <div className="app">
-        {
-          username === null ?
-            <LoginContainer updateUsername={this.updateUsername} /> :
-            null
-        }
+        <LoginContainer 
+          needLogin={username === null}
+          updateUsername={this.updateUsername}
+        />
         <Header
           chatName="Rakuten Games Chat"
           userCount={userCount}
           updateUserPanelOpened={this.updateUserPanelOpened}
         />
-        <Chatbox username={username} />
-        <ChatForm sid={sid} />
+        <ChatContainer
+          username={username}
+          sid={sid}
+          isUserPanelOpened={isUserPanelOpened}
+        />
         <ActiveUsersContainer
           username={username}
           updateUserCount={this.updateUserCount}
