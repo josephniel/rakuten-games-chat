@@ -1,0 +1,23 @@
+.header {
+  align-items: center;
+  background: #eaeaea;
+  box-sizing: border-box;
+  cursor: default;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  max-width: 500px;
+  padding: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header .name {
+  font-weight: 600;
+}
+
+.header .info-toggle {
+  cursor: pointer;
+  text-decoration: underline;
+}

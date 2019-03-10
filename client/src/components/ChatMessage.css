@@ -1,0 +1,28 @@
+.chat-message {
+  margin: 20px 30px;
+}
+
+.chat-message.self {
+  text-align: right;
+}
+
+.chat-message .chat-message-text {
+  background: #eaeaea;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 5px 0;
+  padding: 20px;
+}
+
+.chat-message .chat-message-name,
+.chat-message .chat-message-time {
+  font-size: 0.9rem;
+}
+
+.chat-message .chat-message-name {
+  font-weight: 700;
+}
+
+.chat-message .chat-message-time {
+  font-style: italic;
+}
