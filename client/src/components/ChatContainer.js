@@ -5,9 +5,9 @@ import './ChatContainer.css';
 
 class ChatContainer extends Component {
   render() {
-    const { username, sid, isUserPanelOpened } = this.props;
+    const { isUserPanelOpened, sid, username } = this.props;
     if (isUserPanelOpened) {
-      null;
+      return null;
     }
 
     return (

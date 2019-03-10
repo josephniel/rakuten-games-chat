@@ -15,9 +15,10 @@ class ChatForm extends Component {
   }
 
   componentWillReceiveProps() {
+    const { sid } = this.props;
     this.setState({
       ...this.state,
-      sid: this.props.sid,
+      sid,
     });
   }
 
@@ -29,7 +30,8 @@ class ChatForm extends Component {
   }
 
   sendMessage() {
-    emit_send_message(this.state.sid, this.state.message_input);
+    const { sid, message_input } = this.state;
+    emit_send_message(sid, message_input);
     this.setState({
       ...this.state,
       message_input: '',
@@ -37,12 +39,13 @@ class ChatForm extends Component {
   }
 
   render() {
+    const { message_input } = this.state;
     return (
       <div className="chat-form">
         <input
           className="message-input-box"
           type="text"
-          value={this.state.message_input}
+          value={message_input}
           onChange={this.updateMessageInputValue}
         />
         <button

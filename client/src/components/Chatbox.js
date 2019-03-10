@@ -24,9 +24,10 @@ class Chatbox extends Component {
   }
 
   addMessage(message) {
+    const { messages } = this.state;
     this.setState({
       messages:  [
-        ...this.state.messages,
+        ...messages,
         JSON.parse(message),
       ]
     });
@@ -34,19 +35,24 @@ class Chatbox extends Component {
 
   updateMessages(data) {
     data = JSON.parse(data);
+    const { messages } = this.state;
+
     this.setState({
       messages:  [
         ...data.messages,
-        ...this.state.messages,
+        ...messages,
       ]
     });
   }
 
   render() {
-    const chat_messages = this.state.messages.map((message, index) => {
+    const { username } = this.props;
+    const { messages } = this.state;
+
+    const chat_messages = messages.map((message, index) => {
       const newMessage = {
         ...message,
-        is_sender: this.props.username === message.name,
+        is_sender: username === message.name,
       };
       return <ChatMessage message={newMessage} key={index} />;
     });

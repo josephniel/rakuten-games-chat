@@ -27,7 +27,8 @@ class LoginForm extends Component {
     on_username_valid(this.continueLogin);
   }
 
-  login(username) {
+  login() {
+    const { username } = this.state.username_input;
     if (username !== '') {
       emit_add_username(username);
     }
@@ -49,8 +50,10 @@ class LoginForm extends Component {
 
   continueLogin({ sid }) {
     const { updateUsername } = this.props;
+    const { username_input } = this.state;
+
     this.hideValidation();
-    updateUsername(sid, this.state.username_input);
+    updateUsername(sid, username_input);
   }
 
   updateUsernameInputValue(event) {
@@ -61,24 +64,25 @@ class LoginForm extends Component {
   }
 
   render() {
+    const { username_input, username_taken } = this.state;
     return (
       <div>
         <div className="login-form">
           <input
             className="username-input-box"
             type="text"
-            value={this.state.username_input}
+            value={username_input}
             onChange={this.updateUsernameInputValue}
           />
           <button
             className="login-button"
-            onClick={() => this.login(this.state.username_input)}
+            onClick={this.login}
           >
             Login
           </button>
         </div>
         <div
-          className={this.state.username_taken === true ? "error show" : "hide"}
+          className={username_taken === true ? "error show" : "hide"}
         >
           Username is already taken. Try another one.
         </div>

@@ -54,18 +54,18 @@ class App extends Component {
         />
         <Header
           chatName="Rakuten Games Chat"
-          userCount={userCount}
           updateUserPanelOpened={this.updateUserPanelOpened}
+          userCount={userCount}
         />
         <ChatContainer
-          username={username}
-          sid={sid}
           isUserPanelOpened={isUserPanelOpened}
+          sid={sid}
+          username={username}
         />
         <ActiveUsersContainer
-          username={username}
-          updateUserCount={this.updateUserCount}
           isUserPanelOpened={isUserPanelOpened}
+          updateUserCount={this.updateUserCount}
+          username={username}
         />
       </div>
     );

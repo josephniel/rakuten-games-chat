@@ -26,7 +26,8 @@ class ActiveUsersContainer extends Component {
   }
 
   render() {
-    if (!this.props.isUserPanelOpened) {
+    const { isUserPanelOpened, username } = this.props;
+    if (!isUserPanelOpened) {
       return null;
     }
 
@@ -34,7 +35,7 @@ class ActiveUsersContainer extends Component {
       <ActiveUserRow
         user={user}
         key={index}
-        isSelf={user === this.props.username}
+        isSelf={user === username}
       />
     );
     return (
