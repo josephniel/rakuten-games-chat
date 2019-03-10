@@ -23,10 +23,6 @@ class Chatbox extends Component {
     on_add_chat_message(this.addMessage);
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-
   addMessage(message) {
     const { messages } = this.state;
     this.setState({
@@ -35,6 +31,7 @@ class Chatbox extends Component {
         JSON.parse(message),
       ]
     });
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   updateMessages(data) {
@@ -52,6 +49,7 @@ class Chatbox extends Component {
         ]
       });
     }
+    window.scrollTo(0, 0);
   }
 
   render() {
