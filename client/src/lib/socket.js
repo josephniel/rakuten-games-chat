@@ -14,6 +14,10 @@ export function on_load_chat_messages(handler) {
   socket.on('load_chat_messages', handler);
 }
 
+export function on_add_chat_message(handler) {
+  socket.on('add_chat_message', handler);
+}
+
 export function emit_add_username(username) {
   socket.emit('add_username', {
     username,
