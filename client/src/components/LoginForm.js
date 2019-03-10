@@ -56,24 +56,26 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="login-form">
-        <input
-          className="username-input-box"
-          type="text"
-          value={this.state.username_input}
-          onChange={this.updateUsernameInputValue}
-        />
-        <button
-          className="login-button"
-          onClick={() => this.login(this.state.username_input)}
-        >
-          Login
-        </button>
-        <span
-          className={this.state.username_taken === true ? "show" : "hide"}
+      <div>
+        <div className="login-form">
+          <input
+            className="username-input-box"
+            type="text"
+            value={this.state.username_input}
+            onChange={this.updateUsernameInputValue}
+          />
+          <button
+            className="login-button"
+            onClick={() => this.login(this.state.username_input)}
+          >
+            Login
+          </button>
+        </div>
+        <div
+          className={this.state.username_taken === true ? "error show" : "hide"}
         >
           Username is already taken. Try another one.
-        </span>
+        </div>
       </div>
     );
   }

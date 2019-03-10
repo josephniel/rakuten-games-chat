@@ -11,3 +11,8 @@ body {
 .hide {
   display: none;
 }
+
+.error {
+  color: #f00;
+  margin: 5px 0;
+}

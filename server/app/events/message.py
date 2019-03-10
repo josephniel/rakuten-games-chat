@@ -9,7 +9,7 @@ from app.model import Message
 from app.session import get_username_by_session_id
 
 
-def emit_load_messages(page: int) -> None:
+def emit_load_messages(page: int, broadcast: bool) -> None:
     messages = list(Message.find(page))
     emit(
         'load_chat_messages',
@@ -19,7 +19,7 @@ def emit_load_messages(page: int) -> None:
                 key=(lambda message: message['timestamp'])
             ),
         }, default=json_util.default),
-        broadcast=True,
+        broadcast=broadcast,
     )
 
 
@@ -34,7 +34,7 @@ def emit_new_message(message_id: str) -> None:
 
 @socketio.on('retrieve_messages')
 def on_load_chat_messages(data) -> None:
-    emit_load_messages(data['page'])
+    emit_load_messages(data['page'], True)
 
 
 @socketio.on('send_message')
