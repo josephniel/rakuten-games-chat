@@ -25,9 +25,13 @@ class Chatbox extends Component {
   }
 
   render() {
-    const chat_messages = this.state.messages.map(
-      (message, index) => <ChatMessage message={message} key={index} />
-    );
+    const chat_messages = this.state.messages.map((message, index) => {
+      const newMessage = {
+        ...message,
+        is_sender: this.props.username === message.name,
+      };
+      return <ChatMessage message={newMessage} key={index} />;
+    });
     return (
       <div className="chat-box">
         {chat_messages}

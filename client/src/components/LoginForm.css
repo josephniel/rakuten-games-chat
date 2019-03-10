@@ -1,0 +1,15 @@
+.login-form {
+  display: flex;
+  margin: 20px 0 0;
+}
+
+.login-form .username-input-box {
+  box-sizing: border-box;
+  flex: 1;
+  height: 40px;
+}
+
+.login-form .login-button {
+  box-sizing: border-box;
+  height: 40px;
+}
