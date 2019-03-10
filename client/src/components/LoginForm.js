@@ -41,10 +41,12 @@ class LoginForm extends Component {
     });
   }
 
-  continueLogin({ sid }) {
+  continueLogin(data) {
     const { updateUsername } = this.props;
+    data = JSON.parse(data);
+
     this.hideValidation();
-    updateUsername(sid, this.state.username_input);
+    updateUsername(data.sid, this.state.username_input);
   }
 
   updateUsernameInputValue(event) {
