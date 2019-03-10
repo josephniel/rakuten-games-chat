@@ -5,11 +5,7 @@ import './ChatContainer.css';
 
 class ChatContainer extends Component {
   render() {
-    const { isUserPanelOpened, sid, username } = this.props;
-    if (isUserPanelOpened) {
-      return null;
-    }
-
+    const { sid, username } = this.props;
     return (
       <div className="chat-container">
         <Chatbox username={username} />

@@ -44,6 +44,10 @@ class App extends Component {
     this.forceUpdate();
   }
 
+  componentWillUpdate() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   render() {
     const { isUserPanelOpened, sid, username, userCount } = this.state;
     return (
@@ -58,7 +62,6 @@ class App extends Component {
           userCount={userCount}
         />
         <ChatContainer
-          isUserPanelOpened={isUserPanelOpened}
           sid={sid}
           username={username}
         />

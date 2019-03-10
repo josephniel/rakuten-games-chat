@@ -56,6 +56,7 @@ class Chatbox extends Component {
       };
       return <ChatMessage message={newMessage} key={index} />;
     });
+    console.log(JSON.stringify(messages));
     return (
       <div className="chat-box">
         {chat_messages}
