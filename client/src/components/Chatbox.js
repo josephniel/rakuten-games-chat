@@ -23,6 +23,10 @@ class Chatbox extends Component {
     on_add_chat_message(this.addMessage);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   addMessage(message) {
     const { messages } = this.state;
     this.setState({
