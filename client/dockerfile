@@ -1,0 +1,15 @@
+FROM node:9.6.1
+LABEL author="Joseph Niel Tuazon <josephnieltuazon@gmail.com>"
+
+ENV APPDIR /app
+
+RUN mkdir ${APPDIR}
+WORKDIR ${APPDIR}
+
+ENV PATH ${APPDIR}/node_modules/.bin:$PATH
+
+COPY package.json ./package.json
+RUN npm install --silent
+RUN npm install react-scripts@1.1.1 -g --silent
+
+CMD ["npm", "start"]

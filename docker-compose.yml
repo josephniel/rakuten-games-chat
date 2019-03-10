@@ -22,7 +22,7 @@ services:
       dockerfile: ./dockerfile
     container_name: rakuten-games-chat-server
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - "./server:/app"
     links:
@@ -35,3 +35,15 @@ services:
       - MONGODB_USERNAME=${MONGODB_USERNAME}
       - MONGODB_PASSWORD=${MONGODB_PASSWORD}
       - MONGODB_DATABASE=${MONGODB_DATABASE}
+  client:
+    container_name: rakuten-games-chat-client
+    build:
+      context: ./client
+      dockerfile: ./dockerfile
+    volumes:
+      - './client:/app'
+      - '/app/node_modules'
+    ports:
+      - '${CLIENT_PORT}:3000'
+    environment:
+      - NODE_ENV=development
