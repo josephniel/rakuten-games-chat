@@ -15,12 +15,16 @@ class LoginForm extends Component {
       username_taken: null,
     };
 
+    this.continueLogin = this.continueLogin.bind(this);
     this.hideValidation = this.hideValidation.bind(this);
     this.login = this.login.bind(this);
+    this.showValidation = this.showValidation.bind(this);
     this.updateUsernameInputValue = this.updateUsernameInputValue.bind(this);
+  }
 
-    on_username_taken(this.showValidation.bind(this));
-    on_username_valid(this.continueLogin.bind(this));
+  componentDidMount() {
+    on_username_taken(this.showValidation);
+    on_username_valid(this.continueLogin);
   }
 
   login(username) {
