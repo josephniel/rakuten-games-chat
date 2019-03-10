@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="name">{this.props.chatName}</div>
-        <div className="info-toggle">Info</div>
+        <div className="info-toggle">Users ({this.props.userCount})</div>
       </div>
     );
   }

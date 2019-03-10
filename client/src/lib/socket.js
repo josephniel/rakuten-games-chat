@@ -10,6 +10,10 @@ export function on_username_valid(handler) {
   socket.on('username_valid', handler);
 }
 
+export function on_update_active_users(handler) {
+  socket.on('update_active_users', handler);
+}
+
 export function on_load_chat_messages(handler) {
   socket.on('load_chat_messages', handler);
 }

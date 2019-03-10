@@ -15,7 +15,6 @@ class ChatForm extends Component {
   }
 
   componentWillReceiveProps() {
-    console.log(this.props.sid);
     this.setState({
       ...this.state,
       sid: this.props.sid,

@@ -28,7 +28,9 @@ class LoginForm extends Component {
   }
 
   login(username) {
-    emit_add_username(username);
+    if (username !== '') {
+      emit_add_username(username);
+    }
   }
 
   showValidation() {
