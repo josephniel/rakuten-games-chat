@@ -1,6 +1,10 @@
 import io from 'socket.io-client';
 
-const socket = io('http://0.0.0.0:30001');
+let socket = null;
+
+export function initialize_socket(serverUrl) {
+  socket =  io(serverUrl);
+}
 
 export function on_username_taken(handler) {
   socket.on('username_taken', handler);

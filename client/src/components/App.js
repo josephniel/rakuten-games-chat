@@ -3,6 +3,7 @@ import ActiveUsersContainer from './ActiveUsersContainer';
 import ChatContainer from './ChatContainer';
 import Header from './Header';
 import LoginContainer from './LoginContainer';
+import { initialize_socket } from '../lib/socket';
 import './App.css';
 
 class App extends Component {
@@ -17,6 +18,8 @@ class App extends Component {
     this.updateUsername = this.updateUsername.bind(this);
     this.updateUserCount = this.updateUserCount.bind(this);
     this.updateUserPanelOpened = this.updateUserPanelOpened.bind(this);
+
+    initialize_socket(props.serverUrl);
   }
 
   updateUsername(sid, username) {
