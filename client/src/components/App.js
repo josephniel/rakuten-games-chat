@@ -9,26 +9,31 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      sid: null,
       username: null,
     };
+    this.updateUsername = this.updateUsername.bind(this);
+  }
+
+  updateUsername(sid, username) {
+    this.setState({
+      sid,
+      username,
+    });
   }
 
   render() {
-    const {username} = this.state;
-    if (username !== null) {
-      return (
-        <div className="app">
-          <Header chatName="Rakuten Games Chat" />
-          <Chatbox username={username} />
-          <ChatForm />
-        </div>
-      );
-    }
+    const { username, sid } = this.state;
     return (
       <div className="app">
-        <LoginContainer />
+        {
+          username === null ?
+            <LoginContainer updateUsername={this.updateUsername} /> :
+            null
+        }
         <Header chatName="Rakuten Games Chat" />
-        <ChatForm />
+        <Chatbox username={username} />
+        <ChatForm sid={sid} />
       </div>
     );
   }

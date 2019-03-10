@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import socket from '../lib/socket';
+import { on_load_chat_messages } from '../lib/socket';
 import ChatMessage from './ChatMessage';
 import './Chatbox.css';
 
@@ -10,22 +10,23 @@ class Chatbox extends Component {
     this.state = {
       messages: []
     };
+    on_load_chat_messages(this.updateMessages.bind(this));
   }
 
-  componentDidMount() {
-    socket.on('load_chat_messages', data => {
-      data = JSON.parse(data);
-      this.setState({
-        messages:  [
-          ...data.messages,
-          ...this.state.messages,
-        ]
-      });
+  updateMessages(data) {
+    data = JSON.parse(data);
+    this.setState({
+      messages:  [
+        ...data.messages,
+        ...this.state.messages,
+      ]
     });
   }
 
   render() {
     const chat_messages = this.state.messages.map((message, index) => {
+      console.log(this.props.username);
+      console.log(message.name);
       const newMessage = {
         ...message,
         is_sender: this.props.username === message.name,

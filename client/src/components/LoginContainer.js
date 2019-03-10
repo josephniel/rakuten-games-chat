@@ -8,7 +8,7 @@ class LoginContainer extends Component {
       <div className="login-container">
         <div className="login-box">
             <span>Please input your name to login</span>
-            <LoginForm />
+            <LoginForm updateUsername={this.props.updateUsername} />
         </div>
       </div>
     );
