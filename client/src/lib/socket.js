@@ -24,4 +24,11 @@ export function emit_add_username(username) {
   });
 }
 
+export function emit_send_message(sid, message) {
+  socket.emit('send_message', {
+    sid,
+    message,
+  });
+}
+
 export default socket

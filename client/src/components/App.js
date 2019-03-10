@@ -20,10 +20,11 @@ class App extends Component {
       sid,
       username,
     });
+    this.forceUpdate();
   }
 
   render() {
-    const { username, sid } = this.state;
+    const { sid, username } = this.state;
     return (
       <div className="app">
         {
