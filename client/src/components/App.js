@@ -10,12 +10,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isUserPanelOpened: false,
       sid: null,
       username: null,
       userCount: 0,
     };
     this.updateUsername = this.updateUsername.bind(this);
     this.updateUserCount = this.updateUserCount.bind(this);
+    this.updateUserPanelOpened = this.updateUserPanelOpened.bind(this);
   }
 
   updateUsername(sid, username) {
@@ -35,8 +37,16 @@ class App extends Component {
     this.forceUpdate();
   }
 
+  updateUserPanelOpened(isUserPanelOpened) {
+    this.setState({
+      ...this.state,
+      isUserPanelOpened,
+    });
+    this.forceUpdate();
+  }
+
   render() {
-    const { sid, username, userCount } = this.state;
+    const { isUserPanelOpened, sid, username, userCount } = this.state;
     return (
       <div className="app">
         {
@@ -47,10 +57,15 @@ class App extends Component {
         <Header
           chatName="Rakuten Games Chat"
           userCount={userCount}
+          updateUserPanelOpened={this.updateUserPanelOpened}
         />
         <Chatbox username={username} />
         <ChatForm sid={sid} />
-        <ActiveUsersContainer updateUserCount={this.updateUserCount} />
+        <ActiveUsersContainer
+          username={username}
+          updateUserCount={this.updateUserCount}
+          isUserPanelOpened={isUserPanelOpened}
+        />
       </div>
     );
   }

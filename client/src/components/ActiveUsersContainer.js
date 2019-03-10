@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { on_update_active_users } from '../lib/socket';
+import ActiveUserRow from './ActiveUserRow';
 import './ActiveUsersContainer.css';
+
 
 class ActiveUsersContainer extends Component {
   constructor(props) {
@@ -24,8 +26,21 @@ class ActiveUsersContainer extends Component {
   }
 
   render() {
+    if (!this.props.isUserPanelOpened) {
+      return null;
+    }
+
+    const activeUserRows = this.state.users.map((user, index) => 
+      <ActiveUserRow
+        user={user}
+        key={index}
+        isSelf={user === this.props.username}
+      />
+    );
     return (
-      <div className="active-users"></div>
+      <div className="active-users">
+        {activeUserRows}
+      </div>
     );
   }
 }

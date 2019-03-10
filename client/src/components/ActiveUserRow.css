@@ -1,0 +1,8 @@
+.active-user-row {
+  padding:20px;
+  border-top: 1px solid #ddd;
+}
+
+.active-user-row:first-child {
+  border-top: none;
+}

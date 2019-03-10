@@ -1,0 +1,11 @@
+.active-users {
+  background: #fff;
+  box-sizing: border-box;
+  position: fixed;
+  height: 100%;
+  margin-top: 100px;
+  max-width: 500px;
+  padding: 30px;
+  top: 0;
+  width: 100%;
+}
