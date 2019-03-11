@@ -39,9 +39,10 @@ def on_load_chat_messages(data) -> None:
 
 @socketio.on('send_message')
 def on_send_message(data) -> None:
-    logger.info('Message received from %s', data['sid'])
-    message_id = Message.create(
-        username=get_username_by_session_id(data['sid']),
-        content=data['message'],
-    )
-    emit_new_message(message_id)
+    if data['message']:
+        logger.info('Message received from %s', data['sid'])
+        message_id = Message.create(
+            username=get_username_by_session_id(data['sid']),
+            content=data['message'],
+        )
+        emit_new_message(message_id)

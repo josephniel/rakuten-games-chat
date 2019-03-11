@@ -23,7 +23,6 @@ def emit_update_active_users() -> None:
 @socketio.on('connect')
 def client_connected() -> None:
     add_user_session()
-    emit('username_requested')
     logger.info("Client connected.")
 
 
@@ -36,10 +35,11 @@ def client_disconnected() -> None:
 
 @socketio.on('add_username')
 def on_add_username(data) -> None:
-    if data['username'] in get_active_users():
-        emit('username_taken')
-    else:
-        add_username(data['username'])
-        emit_update_active_users()
-        emit_load_messages(0)
-        emit('username_valid', {'sid': request.sid})
+    if data['username']:
+        if data['username'] in get_active_users():
+            emit('username_taken')
+        else:
+            add_username(data['username'])
+            emit_update_active_users()
+            emit_load_messages(0)
+            emit('username_valid', {'sid': request.sid})
