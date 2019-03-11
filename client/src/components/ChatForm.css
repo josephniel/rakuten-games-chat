@@ -1,6 +1,6 @@
 .chat-form {
   align-items: center;
-  background: #eaeaea;
+  background: #2a2a2a;
   bottom: 0;
   box-sizing: border-box;
   display: flex;
@@ -12,6 +12,7 @@
 }
 
 .chat-form .message-input-box {
+  border: none;
   box-sizing: border-box;
   flex: 1;
   height: 40px;
@@ -21,4 +22,5 @@
 .chat-form .send-button {
   box-sizing: border-box;
   height: 40px;
+  margin-left: 10px;
 }

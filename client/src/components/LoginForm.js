@@ -5,6 +5,8 @@ import {
   on_username_valid,
 } from '../lib/socket';
 import './LoginForm.css';
+import chatFormButtonImage from './ChatFormButton.png';
+
 
 class LoginForm extends Component {
   constructor(props) {
@@ -74,12 +76,11 @@ class LoginForm extends Component {
             value={usernameInput}
             onChange={this.updateUsernameInputValue}
           />
-          <button
+          <img
+            src={chatFormButtonImage}
             className="login-button"
             onClick={this.login}
-          >
-            Login
-          </button>
+          />
         </div>
         <div
           className={usernameTaken === true ? "error show" : "hide"}

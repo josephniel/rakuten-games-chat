@@ -7,11 +7,16 @@
 }
 
 .chat-message .chat-message-text {
-  background: #eaeaea;
+  background: #f2e2cd;
   border-radius: 5px;
   display: inline-block;
   margin: 5px 0;
   padding: 20px;
+}
+
+.chat-message.self .chat-message-text {
+  background: #14487a;
+  color: #fafafa;
 }
 
 .chat-message .chat-message-name,

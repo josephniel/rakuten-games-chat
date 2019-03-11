@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { emit_send_message } from '../lib/socket';
 import './ChatForm.css';
+import chatFormButtonImage from './ChatFormButton.png';
+
 
 class ChatForm extends Component {
   constructor(props) {
@@ -48,12 +50,11 @@ class ChatForm extends Component {
           value={message_input}
           onChange={this.updateMessageInputValue}
         />
-        <button
+        <img
           className="send-button"
+          src={chatFormButtonImage}
           onClick={this.sendMessage}
-        >
-          Send
-        </button>
+        />
       </div>
     );
   }

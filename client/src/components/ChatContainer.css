@@ -1,4 +1,5 @@
 .chat-container {
+  background: #efeff2;
   box-sizing: border-box;
   height: calc(100% - 200px);
   overflow-y: scroll;

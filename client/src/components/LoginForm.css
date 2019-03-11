@@ -13,4 +13,5 @@
 .login-form .login-button {
   box-sizing: border-box;
   height: 40px;
+  margin-left: 10px;
 }
