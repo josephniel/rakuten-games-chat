@@ -24,6 +24,7 @@ class Chatbox extends Component {
   }
 
   addMessage(message) {
+    const { scrollContainer } = this.props;
     const { messages } = this.state;
     this.setState({
       messages:  [
@@ -31,11 +32,11 @@ class Chatbox extends Component {
         JSON.parse(message),
       ]
     });
-    window.scrollTo(0, document.body.scrollHeight);
+    scrollContainer(this.el.scrollHeight);
   }
 
   updateMessages(data) {
-    const { updateHasMoreMessages } = this.props;
+    const { scrollContainer, updateHasMoreMessages } = this.props;
     const { messages } = this.state;
 
     data = JSON.parse(data);
@@ -49,7 +50,7 @@ class Chatbox extends Component {
         ]
       });
     }
-    window.scrollTo(0, 0);
+    scrollContainer(0);
   }
 
   render() {
@@ -64,7 +65,10 @@ class Chatbox extends Component {
       return <ChatMessage message={newMessage} key={index} />;
     });
     return (
-      <div className="chat-box">
+      <div
+        className="chat-box"
+        ref={el => { this.el = el; }}
+      >
         {chat_messages}
       </div>
     );

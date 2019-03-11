@@ -1,3 +1,6 @@
 .chat-container {
+  box-sizing: border-box;
+  height: calc(100% - 200px);
+  overflow-y: scroll;
   margin: 100px 0;
 }

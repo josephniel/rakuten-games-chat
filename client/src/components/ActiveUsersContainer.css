@@ -3,9 +3,10 @@
   box-sizing: border-box;
   position: fixed;
   height: 100%;
-  margin-top: 100px;
   max-width: 500px;
-  padding: 30px;
+  overflow-y: scroll;
+  padding: 130px 30px 30px;
   top: 0;
   width: 100%;
+  z-index: 1;
 }
