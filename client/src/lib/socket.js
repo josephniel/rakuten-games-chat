@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 let socket = null;
 
 export function initialize_socket(serverUrl) {
-  socket =  io(serverUrl);
+  socket =  io.connect(serverUrl, {transports: ['websocket']});
 }
 
 export function on_username_taken(handler) {
