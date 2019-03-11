@@ -51,6 +51,7 @@ class ChatForm extends Component {
           onChange={this.updateMessageInputValue}
         />
         <img
+          alt="Send"
           className="send-button"
           src={chatFormButtonImage}
           onClick={this.sendMessage}

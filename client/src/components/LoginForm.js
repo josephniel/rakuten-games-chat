@@ -77,6 +77,7 @@ class LoginForm extends Component {
             onChange={this.updateUsernameInputValue}
           />
           <img
+            alt="Login"
             src={chatFormButtonImage}
             className="login-button"
             onClick={this.login}
