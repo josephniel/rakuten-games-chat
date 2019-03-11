@@ -8,8 +8,6 @@ requires = [
     'Flask==1.0.2',
     'Flask-SocketIO==3.0.1',
     'Flask-PyMongo==2.2.0',
-    'marshmallow==2.15.4',
-    'webargs==4.1.0',
 ]
 tests_require = []
 
