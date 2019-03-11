@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import './index.css';
 
+const serverUrl = window.location.protocol + "//" + window.location.hostname + ":30001";
+
 ReactDOM.render(
-  <App serverUrl="http://0.0.0.0:30001" />,
+  <App serverUrl={serverUrl} />,
   document.getElementById('root')
 );
